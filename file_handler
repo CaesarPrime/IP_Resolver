@@ -1,0 +1,47 @@
+#!/usr/bin/python
+
+"""" This is the file handler of the IP Resolver software , which resolves the ip addresses to their respective ISP's based on the
+network ips allocated for each of the ip addresses.
+"""
+
+#begin code
+
+import sys
+
+from subprocess import call
+def main():
+    print("IP Resolver | A tool to define the ISP of a given IP")
+    print("____________________________________________________")
+    print("####################################################")
+    print('#                                                  #')
+    print('#                  Limitation!                     #')
+    print('#          Unresolvable IPs are defined under      #')
+    print('#              the category Undefined!             #')
+    print('#                                                  #')
+    print('#         A Product of Sri Lanka CERT | CC         #')
+    print("####################################################")
+
+    if sys.version_info < (3,0):
+        text_name = raw_input("Please enter the list of IP addresses as a Text file:- ")
+    else:
+        text_name = input("Please enter the list of IP addresses as a Text file:- ")
+
+    print("Reading the file - " + text_name)
+
+
+def import_xls():
+    print()
+
+main()
+
+
+#end code
+
+__author__ = "GWP Chamiekara"
+__copyright__ = "Copyright 2017 , Sri Lanka CERT | CC Project"
+__credits__ = ["Sri Lanka CERT | CC"]
+
+__version__ = "1.0.1"
+__maintainer__ = "Sri Lanka CERT | CC"
+__email__ = "pasan@cert.gov.lk  "
+__status__ = "Production"
