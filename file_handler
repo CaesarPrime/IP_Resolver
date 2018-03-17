@@ -1,0 +1,75 @@
+#!/usr/bin/python
+
+"""" This is the file handler of the IP Resolver software , which resolves the ip addresses to their respective ISP's based on the
+network ips allocated for each of the ip addresses.
+"""
+
+#begin code
+
+import sys
+import resolver
+
+
+def main():
+    print("IP Resolver | A tool to define the ISP of a given IP")
+    print("____________________________________________________")
+    print("####################################################")
+    print('#                                                  #')
+    print('#                  Limitation!                     #')
+    print('#          Unresolvable IPs are defined under      #')
+    print('#              the category Undefined!             #')
+    print('#                                                  #')
+    print('#         A Product of Sri Lanka CERT | CC         #')
+    print("####################################################")
+
+    if sys.version_info < (3,0):
+        text_name = raw_input("Please enter the list of IP addresses as a Text file:- ")
+        file_to_write = raw_input("Please enter the filename into which you want to write the data into:- ")
+    else:
+        text_name = input("Please enter the list of IP addresses as a Text file:- ")
+        file_to_write = input("Please enter the filename into which you want to write the data into:- ")
+
+    print("Reading the file - " + text_name)
+
+    a = open(file_to_write, "w+")
+
+    with open('ISPs.txt') as f:
+        content_isp = f.readlines()
+
+    with open(text_name) as f:
+        content_data = f.readlines()
+
+    a.write("The result of the IP Resolver for file %s \n" % text_name)
+    a.write("----------------------------------------------------------\n")
+
+    for j in range(0, len(content_data)):
+        global isp
+        isp = ""
+        for i in range(0, len(content_isp)):
+            x = content_isp[i].split(None, 2)[0]  # Network IP
+            y = content_isp[i].split(None, 2)[1]  # Subnet bits
+            z = content_isp[i].split(None, 2)[2]  # ISP details
+
+            ip = content_data[j]
+            if resolver.resolve_values(ip, x, y):
+                isp = z
+                break
+            else:
+                isp = "Undefined\n"
+
+        a.write(isp)
+
+    a.close()
+
+main()
+
+# end code
+
+__author__ = "GWP Chamiekara"
+__copyright__ = "Copyright 2017 , Sri Lanka CERT | CC Project"
+__credits__ = ["Sri Lanka CERT | CC"]
+
+__version__ = "1.0.1"
+__maintainer__ = "Sri Lanka CERT | CC"
+__email__ = "pasan@cert.gov.lk  "
+__status__ = "Production"
