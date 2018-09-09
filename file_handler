@@ -19,7 +19,7 @@ def main():
     print('#          Unresolvable IPs are defined under      #')
     print('#              the category Undefined!             #')
     print('#                                                  #')
-    print('#         A Product of Sri Lanka CERT | CC         #')
+    print('#                                                 #')
     print("####################################################")
 
     if sys.version_info < (3,0):
